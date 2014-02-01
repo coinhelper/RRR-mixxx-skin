@@ -1,0 +1,986 @@
+	<!--
+	RRR Radio Skin, for Mixxx 1.11.0
+	www.mixxx.org
+	
+	Based upon the "Campcaster" skin for Mixxx, by SourceFabric as licensed under the Creative Commons Attribution-ShareAlike 3.0 Unported license.
+	http://creativecommons.org/licenses/by-sa/3.0/
+	which in turn was based on the "Deere" Skin for Mixxx 1.8.x by jus
+
+	You are free:
+	to Share - to copy, distribute and transmit the work
+	to Remix - to adapt the work
+
+	Under the following conditions:
+	Attribution - You must attribute the work in the manner specified by the author or licensor
+	(but not in any way that suggests that they endorse you or your use of the work).
+
+	Share Alike - If you alter, transform, or build upon this work, you may distribute
+	the resulting work only under the same or similar license to this one.
+	-->
+
+	<!--
+	CHANGELOG
+	v1.11.0.1 (21/07/2013) - ooobo
+	* Major rewrite
+	* Reconfigured to work with Mixxx 1.11.0
+	* New background img
+	* Rewrote with WidgetGroups meaning new Pos values for easier updating/changes
+	* Added manifest tag
+	* Album and year tag data for both decks
+	* Background for waveform overview
+	* Fixed tooltips
+	* Clock
+	* New VU meters
+	* New font
+	* Added Preview deck stolen from Deere
+
+	v1.0(1/11/2010)
+	* Initial port of Parsons School design to Mixxx
+	-->
+
+<!DOCTYPE skin>
+
+<skin>
+	<manifest>
+		<title>RRR 1280x800 2-deck</title>
+		<author>ooobo</author>
+		<version>1.11.0.1</version>
+		<description>A 2-deck split-waveform for radio broadcasting, no DJ tools.</description>
+		<language>en</language>
+		<license>Creative Commons Attribution, Share-Alike 3.0 Unported</license>
+		<attributes>
+			<attribute config_key="[Master],num_decks">2</attribute>
+			<attribute config_key="[Master],num_samplers">0</attribute>
+			<attribute config_key="[Master],num_preview_decks">1</attribute>
+			<attribute config_key="[PreviewDeck],show_previewdeck">0</attribute>
+		</attributes>
+	</manifest>
+
+	<!--
+	############################################################################################
+	############################################################################################
+	Section: General
+	############################################################################################
+	############################################################################################
+	-->
+	<Style>
+		QToolTip { font: 11px Geneva, 'Trebuchet MS',Trebuchet,Verdana,Sans-serif;
+			        background-color: #000000; color: #FFFFFF; border: 1px solid #505050; padding: 4px; }
+	    QLabel {font-family: Geneva, 'Trebuchet MS',Trebuchet,Verdana,Sans-serif;
+	    	text-align: left;}
+	</Style>
+	<!--
+	**********************************************
+	General- Main background picture
+	**********************************************
+	-->
+	<Background>
+		<Path>background1280x800.png</Path>
+		<BgColor>#e9e9e9</BgColor>
+	</Background>
+
+	<!--
+	**********************************************
+	General- Search and Library display
+	**********************************************
+	-->
+	<WidgetGroup>
+		<Pos>20,267</Pos>
+		<Size>1240,525</Size>
+		<Layout>horizontal</Layout>
+		<Children>
+			<TableView>
+				<Style>
+				QTableView, QTextBrowser, QTreeView, QLabel, QHeaderView {
+					font: 11px/13px Geneva, 'Trebuchet MS',Trebuchet,Verdana,Sans-serif;
+				}
+				QLabel { background-color: transparent; color: #000000; padding-left: 1%; }
+				QTableView { background: #ebebeb; alternate-background-color: #cfdee7; color: #000000; }
+				QRadioButton { color: #000000; }
+				QTextBrowser { background: #ebebeb; color: #000000; }
+				WLibrarySidebar { background: #cfdee7; color: #000000; }
+				WSearchLineEdit { background: #cfdee7; color: #000000; }
+				</Style>
+				<BgColor>#FFFFFF</BgColor>
+				<FgColor>#333333</FgColor>
+				<BgColorRowEven>#ebebeb</BgColorRowEven>
+				<BgColorRowUneven>#cfdee7</BgColorRowUneven>
+			</TableView>
+
+		</Children>
+	</WidgetGroup>
+	<!-- Preview Deck-->
+	<WidgetGroup>
+		<Style>
+			QGroupBox { background:#000000;}
+		</Style>
+		<Pos>20,718</Pos>
+		<Size>400,70</Size>
+		<Layout>horizontal</Layout>
+		<Children>
+			<!-- Preview Deck Column 1 Row 1-->
+			<WidgetGroup>
+			<Layout>vertical</Layout>
+			<Children>
+			<WidgetGroup>
+				<Style>
+					QGroupBox
+					{
+					padding: 2px 0px 2px 2px;
+					border-left: 1px solid #656565;
+					border-right: 1px solid #656565;
+					border-top: 1px solid #656565;
+					border-bottom: 1px solid #2B2B2B;
+					background: transparent;
+					}
+				</Style>
+				<Layout>horizontal</Layout>
+				<Children>
+					<!--
+					**********************************************
+					Text- Track Title
+					**********************************************
+					-->
+					<Text>
+						<TooltipId>text</TooltipId>
+						<Style>QLabel { 
+						font: 11px/13px Lucida Grande, Lucida Sans Unicode, Arial, Verdana, sans-serif;
+						background-color: transparent;
+						color: #ACACAC;
+						text-align: left;
+						}
+						</Style>
+						<Group>[PreviewDeck1]</Group>
+						<Pos></Pos>
+						<Size>50me,15f</Size>
+					</Text>
+					
+				</Children>
+			</WidgetGroup>
+			<!-- Preview Deck Column 1 Row 2-->
+			<WidgetGroup>
+				<Style>
+				QGroupBox {
+				margin-bottom: 0px;
+				padding: 3px;
+				border-left: 1px solid #656565;
+				border-right: 1px solid #656565;
+				border-top: 0px solid #2B2B2B;
+				border-bottom: 1px solid #656565;
+				background: transparent;
+				}
+				</Style>
+				<Layout>horizontal</Layout>
+				<Children>
+					<PushButton>
+						<TooltipId>play_start</TooltipId>
+						<Style></Style>
+						<NumberStates>2</NumberStates>
+						<RightClickIsPushButton>true</RightClickIsPushButton>
+						<State>
+							<Number>0</Number>
+							<Pressed>btn_play_sampler_down.png</Pressed>
+							<Unpressed>btn_play_sampler.png</Unpressed>
+						</State>
+						<State>
+							<Number>1</Number>
+							<Pressed>btn_play_sampler_overdown.png</Pressed>
+							<Unpressed>btn_play_sampler_over.png</Unpressed>
+						</State>
+						<Pos>2,2</Pos>
+						<Connection>
+							<ConfigKey>[PreviewDeck1],play</ConfigKey>
+							<EmitOnDownPress>true</EmitOnDownPress>
+							<ButtonState>LeftButton</ButtonState>
+						</Connection>
+						<Connection>
+							<ConfigKey>[PreviewDeck1],start</ConfigKey>
+							<EmitOnDownPress>true</EmitOnDownPress>
+							<ButtonState>RightButton</ButtonState>
+							<ConnectValueToWidget>false</ConnectValueToWidget>
+						</Connection>
+					</PushButton>
+					<Overview>
+						<TooltipId>waveform_overview</TooltipId>
+						<Style></Style>
+						<Group>[PreviewDeck1]</Group>
+						<Size>me,30f</Size>
+						<BgColor></BgColor>
+						<BgColor>#FFFFFF</BgColor>
+						<SignalHighColor>#FFE300</SignalHighColor>
+						<SignalMidColor>#0099FF</SignalMidColor>
+						<SignalLowColor>#FF0035</SignalLowColor>
+						<SignalColor>#FF8000</SignalColor>
+						<PlayPosColor>#00FF00</PlayPosColor>
+						<DefaultMark>
+							<Align>bottom</Align>
+							<Color>#FFFFFF</Color>
+							<TextColor>#00FF00</TextColor>
+							<Text> %1 </Text>
+						</DefaultMark>
+						<Mark>
+							<Control>cue_point</Control>
+							<Text> C </Text>
+							<Align>top</Align>
+							<Color>#FF001C</Color>
+							<TextColor>#00FF00</TextColor>
+						</Mark>
+						<Connection>
+							<ConfigKey>[PreviewDeck1],playposition</ConfigKey>
+							<EmitOnDownPress>false</EmitOnDownPress>
+						</Connection>
+					</Overview>
+				</Children>
+			</WidgetGroup>
+			</Children>
+			</WidgetGroup>
+
+		</Children>
+		<Connection>
+			<ConfigKey>[PreviewDeck],show_previewdeck</ConfigKey>
+			<BindProperty>visible</BindProperty>
+		</Connection>
+	</WidgetGroup>
+
+
+	<!--
+	############################################################################################
+	############################################################################################
+	Section: Text
+	############################################################################################
+	############################################################################################
+	-->
+
+	<!--
+	**********************************************
+	CHANNEL 1
+	**********************************************
+	-->
+	<WidgetGroup>
+		<Pos>25,18</Pos>
+		<Style>QGroupBox { border: 0px solid red; }</Style>
+		<Children>
+			<!-- CHANNEL 1 -->
+			<Text>	
+				<Style>QLabel { font: bold 20px;
+				background-color: transparent; color: #000000;  }
+				</Style>
+				<Channel>1</Channel>
+				<Pos>0,0</Pos>
+				<Size>495,28</Size>
+			</Text>
+
+			<NumberPos>
+				<Style>QLabel { font: bold 24px;
+				background-color: transparent; color: #CC0000; }
+				</Style>
+				<Channel>1</Channel>
+				<Pos>0,38</Pos>
+		        <Size>130,28</Size>
+				<NumberOfDigits>6</NumberOfDigits>
+				<Connection>
+					<ConfigKey>[Channel1],playposition</ConfigKey>
+				</Connection>
+			</NumberPos>
+			<!-- Album Year -->
+			<TrackProperty>
+				<TooltipId>track_year</TooltipId>
+				<Style>QLabel { font-size: 14px;
+				background-color: transparent; color: #444444; padding-left: 1%; }
+				</Style>
+				<Property>year</Property>
+				<Channel>1</Channel>
+				<Pos>145,42</Pos>
+				<Size>40,28</Size>
+			</TrackProperty>
+			<!-- Album Title -->
+			<TrackProperty>
+				<TooltipId>track_album</TooltipId>
+				<Style>QLabel { font-size: 14px;
+				background-color: transparent; color: #444444; padding-left: 1%; }
+				</Style>
+				<Property>album</Property>
+				<Channel>1</Channel>
+				<Pos>205,42</Pos>
+				<Size>280,28</Size>
+			</TrackProperty>
+		</Children>
+	</WidgetGroup>
+	<!--
+	**********************************************
+	CHANNEL 2
+	**********************************************
+	-->
+	<WidgetGroup>
+		<Pos>765,18</Pos>
+		<Style>QGroupBox { border: 0px solid red; }</Style>
+		<Children>
+			<!-- CHANNEL 2 -->
+			<Text>	
+				<Style>QLabel { font: bold 20px;
+				background-color: transparent; color: #000000;  }
+				</Style>
+				<Channel>2</Channel>
+				<Pos>0,0</Pos>
+				<Size>495,28</Size>
+			</Text>
+
+			<NumberPos>
+				<Style>QLabel { font: bold 24px;
+				background-color: transparent; color: #CC0000; }
+				</Style>
+				<Channel>2</Channel>
+				<Pos>0,38</Pos>
+		        <Size>130,28</Size>
+				<NumberOfDigits>6</NumberOfDigits>
+				<Connection>
+					<ConfigKey>[Channel2],playposition</ConfigKey>
+				</Connection>
+			</NumberPos>
+			<!-- Album Year -->
+			<TrackProperty>
+				<TooltipId>track_year</TooltipId>
+				<Style>QLabel { font-size: 14px;
+				background-color: transparent; color: #444444; padding-left: 1%; }
+				</Style>
+				<Property>year</Property>
+				<Channel>2</Channel>
+				<Pos>145,42</Pos>
+				<Size>40,28</Size>
+			</TrackProperty>
+			<!-- Album Title -->
+			<TrackProperty>
+				<TooltipId>track_album</TooltipId>
+				<Style>QLabel { font-size: 14px;
+				background-color: transparent; color: #444444; padding-left: 1%; }
+				</Style>
+				<Property>album</Property>
+				<Channel>2</Channel>
+				<Pos>205,42</Pos>
+				<Size>280,28</Size>
+			</TrackProperty>
+		</Children>
+	</WidgetGroup>
+
+
+	
+
+	<!--
+	############################################################################################
+	############################################################################################
+	Section: Visual
+	############################################################################################
+	############################################################################################
+	-->
+
+	<!--
+	**********************************************
+	CHANNEL 1
+	**********************************************
+	-->
+	<WidgetGroup>
+		<Pos>29,99</Pos>
+		<Style>QGroupBox { border: 0px solid red; }</Style>
+		<Children>
+			<Visual>
+				<TooltipId>waveform_display</TooltipId>
+				<Style>
+				</Style>
+				<Channel>1</Channel>
+				<Pos>0,1</Pos>
+				<Size>381,101</Size>
+				<BgColor>#ffffff</BgColor>
+				<HfcColor>#000000</HfcColor>
+				<SignalColor>#CC0000</SignalColor>
+				<SignalLowColor>#CC0000</SignalLowColor>
+				<SignalMidColor>#CC0000</SignalMidColor>
+				<SignalHighColor>#ff8900</SignalHighColor>
+				<BeatColor>#e0ddd7</BeatColor>
+				<BeatHighlightColor>#00FF00</BeatHighlightColor>
+				<MarkerColor>#00FF00</MarkerColor>
+				<CueColor>#e19820</CueColor>
+				<EndOfTrackColor>#ff8900</EndOfTrackColor>
+				<Mark>
+					<Control>cue_point</Control>
+					<Pixmap>marker_cue.png</Pixmap>
+					<Text> CUE </Text>
+					<Align>bottom</Align>
+					<Color>#FF001C</Color>
+					<TextColor>#333333</TextColor>
+				</Mark>
+				<MarkRange>
+					<StartControl>loop_start_position</StartControl>
+					<EndControl>loop_end_position</EndControl>
+					<EnabledControl>loop_enabled</EnabledControl>
+					<Color>#00FF00</Color>
+					<DisabledColor>#FFFFFF</DisabledColor>
+				</MarkRange>
+				<Mark>
+					<Control>loop_start_position</Control>
+					<Pixmap>marker_loopin.png</Pixmap>
+					<Text>LOOP IN</Text>
+					<Align>bottom</Align>
+					<Color>#00FF00</Color>
+					<TextColor>#FFFFFF</TextColor>
+				</Mark>
+				<Mark>
+					<Control>loop_end_position</Control>
+					<Pixmap>marker_loopout.png</Pixmap>
+					<Text>LOOP OUT</Text>
+					<Align>bottom</Align>
+					<Color>#00FF00</Color>
+					<TextColor>#FFFFFF</TextColor>
+				</Mark>
+				<!--
+				The hotcues not represented by a button in the current skin show only in the waveform under two circumstances:
+					- if a MIDI device which supports more hotcues than buttons are in the current skin has them activated
+					- if you change from a skin which supports more hotcues than buttons are in the current skin (and has them activated)
+				These "special" hotcues share the color #AE5CFF to make them distinguishable (and maintainable) from the hotcues
+				represented by a button in the current skin. Mixxx 1.8 supports up to 32 hotcue. Current skins uses up to 6 buttons per channel.
+				-->
+				<Mark>
+					<Control>hotcue_1_position</Control>
+					<Pixmap>marker_hotcue_1.png</Pixmap>
+					<Text> HOTCUE 1 </Text>
+					<Align>bottom</Align>
+					<Color>#ffff00</Color>
+					<TextColor>#333333</TextColor>
+				</Mark>
+				<Mark>
+					<Control>hotcue_2_position</Control>
+					<Pixmap>marker_hotcue_2.png</Pixmap>
+					<Text> HOTCUE 2 </Text>
+					<Align>bottom</Align>
+					<Color>#ff00ff</Color>
+					<TextColor>#333333</TextColor>
+				</Mark>
+				<Mark>
+					<Control>hotcue_3_position</Control>
+					<Pixmap>marker_hotcue_3.png</Pixmap>
+					<Text> HOTCUE 3 </Text>
+					<Align>bottom</Align>
+					<Color>#00e1e1</Color>
+					<TextColor>#333333</TextColor>
+				</Mark>
+				<Mark>
+					<Control>hotcue_4_position</Control>
+					<Pixmap>marker_hotcue_4.png</Pixmap>
+					<Text> HOTCUE 4 </Text>
+					<Align>bottom</Align>
+					<Color>#00cc00</Color>
+					<TextColor>#333333</TextColor>
+				</Mark>
+				
+			</Visual>
+			<!-- Channel 1: Waveform Overview -->
+			<Overview>
+				<TooltipId>waveform_overview</TooltipId>
+				<Channel>1</Channel>
+				<Pos>0,109</Pos>
+				<Size>329,40</Size>
+				<BgColor>#061319</BgColor>
+				<BgPixmap></BgPixmap>
+				<SignalColor>#CC0000</SignalColor>
+				
+				<EndOfTrackColor>#000000</EndOfTrackColor>
+				<Connection>
+					<ConfigKey>[Channel1],playposition</ConfigKey>
+					<EmitOnDownPress>false</EmitOnDownPress>
+				</Connection>
+			</Overview>
+			<!-- Channel 1: Button play -->
+			<PushButton>
+				<Tooltip>Play/Pause&#10;Left-click: Toggles playing or pausing the track.&#10;Right-click: Places a Cue-point at the current point in the track.&#10;</Tooltip>
+				<Style></Style>
+				<NumberStates>2</NumberStates>
+				<RightClickIsPushButton>true</RightClickIsPushButton>
+				<State>
+					<Number>0</Number>
+					<Pressed>btn_play.png</Pressed>
+					<Unpressed>btn_play.png</Unpressed>
+				</State>
+				<State>
+					<Number>1</Number>
+					<Pressed>btn_play_over.png</Pressed>
+					<Unpressed>btn_play_over.png</Unpressed>
+				</State>
+				<Pos>388,0</Pos>
+				<Connection>
+					<ConfigKey>[Channel1],play</ConfigKey>
+					<EmitOnDownPress>true</EmitOnDownPress>
+					<ButtonState>LeftButton</ButtonState>
+				</Connection>
+				<Connection>
+					<ConfigKey>[Channel1],cue_set</ConfigKey>
+					<EmitOnDownPress>true</EmitOnDownPress>
+					<ButtonState>RightButton</ButtonState>
+					<ConnectValueToWidget>false</ConnectValueToWidget>
+				</Connection>
+			</PushButton>
+			<!-- Channel 1: Button cue -->
+			<PushButton>
+				<Tooltip>Cue&#10;Left-click (while playing): The track will seek to the cue-point and play.&#10;Left-click (while stopped): Places a cue-point at the current position in the track.&#10;Right-click: Will seek to the cue-point and stop.&#10;</Tooltip>
+				<Style></Style>
+				<NumberStates>1</NumberStates>
+				<State>
+					<Number>0</Number>
+					<Pressed>btn_cue_over.png</Pressed>
+					<Unpressed>btn_cue.png</Unpressed>
+				</State>
+				<Pos>437,109</Pos>
+				<Connection>
+					<ConfigKey>[Channel1],cue_default</ConfigKey>
+					<EmitOnDownPress>true</EmitOnDownPress>
+					<ButtonState>LeftButton</ButtonState>
+				</Connection>
+				<Connection>
+					<ConfigKey>[Channel1],cue_default</ConfigKey>
+					<EmitOnDownPress>false</EmitOnDownPress>
+					<ButtonState>LeftButton</ButtonState>
+				</Connection>
+				<Connection>
+					<ConfigKey>[Channel1],cue_gotoandstop</ConfigKey>
+					<EmitOnDownPress>true</EmitOnDownPress>
+					<ButtonState>RightButton</ButtonState>
+				</Connection>
+				<Connection>
+					<ConfigKey>[Channel1],cue_gotoandstop</ConfigKey>
+					<EmitOnDownPress>false</EmitOnDownPress>
+					<ButtonState>RightButton</ButtonState>
+				</Connection>
+			</PushButton>
+			<!-- Channel 1: Button ff -->
+		    <PushButton>
+		        <Tooltip>Fast Forward&#10;Left-click: Fast forward through the track.&#10;Right-click: Jumps to the end of the track.&#10;</Tooltip>
+		        <Style></Style>
+		        <NumberStates>1</NumberStates>
+		        <State>
+		            <Number>0</Number>
+		            <Pressed>btn_forward_over.png</Pressed>
+		            <Unpressed>btn_forward.png</Unpressed>
+		        </State>
+		        <Pos>385,109</Pos>
+		        <Connection>
+		            <ConfigKey>[Channel1],fwd</ConfigKey>
+		            <EmitOnDownPress>true</EmitOnDownPress>
+		            <ButtonState>LeftButton</ButtonState>
+		        </Connection>
+		        <Connection>
+		            <ConfigKey>[Channel1],fwd</ConfigKey>
+		            <EmitOnDownPress>false</EmitOnDownPress>
+		            <ButtonState>LeftButton</ButtonState>
+		        </Connection>
+		        <Connection>
+		            <ConfigKey>[Channel1],end</ConfigKey>
+		            <EmitOnDownPress>true</EmitOnDownPress>
+		            <ButtonState>RightButton</ButtonState>
+		        </Connection>
+		        <Connection>
+		            <ConfigKey>[Channel1],end</ConfigKey>
+		            <EmitOnDownPress>false</EmitOnDownPress>
+		            <ButtonState>RightButton</ButtonState>
+		        </Connection>
+		    </PushButton>
+		    <!-- Channel 1: Button rr -->
+		    <PushButton>
+		        <Tooltip>Fast Rewind&#10;Left-click: Fast rewind through the track.&#10;Right-click: Jumps to the beginning of the track.&#10;</Tooltip>
+		        <Style></Style>
+		        <NumberStates>1</NumberStates>
+		        <State>
+		            <Number>0</Number>
+		            <Pressed>btn_rewind_over.png</Pressed>
+		            <Unpressed>btn_rewind.png</Unpressed>
+		        </State>
+		        <Pos>335,109</Pos>
+		        <Connection>
+		            <ConfigKey>[Channel1],back</ConfigKey>
+		            <EmitOnDownPress>true</EmitOnDownPress>
+		            <ButtonState>LeftButton</ButtonState>
+		        </Connection>
+		        <Connection>
+		            <ConfigKey>[Channel1],back</ConfigKey>
+		            <EmitOnDownPress>false</EmitOnDownPress>
+		            <ButtonState>LeftButton</ButtonState>
+		        </Connection>
+		        <Connection>
+		            <ConfigKey>[Channel1],start</ConfigKey>
+		            <EmitOnDownPress>true</EmitOnDownPress>
+		            <ButtonState>RightButton</ButtonState>
+		        </Connection>
+		        <Connection>
+		            <ConfigKey>[Channel1],start</ConfigKey>
+		            <EmitOnDownPress>false</EmitOnDownPress>
+		            <ButtonState>RightButton</ButtonState>
+		        </Connection>
+		    </PushButton>
+	    </Children>
+    </WidgetGroup>
+
+	<!-- #############################################################
+				Channel 2
+		########################################################## -->
+
+    <WidgetGroup>
+		<Pos>769,99</Pos>
+		<Style>QGroupBox { border: 0px solid red; }</Style>
+		<Children>
+		    <!-- Channel 2: Waveform Display -->
+			<Visual>
+				<TooltipId>waveform_display</TooltipId>
+				<Style></Style>
+				<Channel>2</Channel>
+				<Pos>101,1</Pos>
+				<Size>381,101</Size>
+		        <BgColor>#ffffff</BgColor>
+		        <HfcColor>#000000</HfcColor>
+		        <SignalColor>#CC0000</SignalColor>       
+				<SignalLowColor>#CC0000</SignalLowColor>
+				<SignalMidColor>#CC0000</SignalMidColor>
+				<SignalHighColor>#ff8900</SignalHighColor>
+		        <BeatColor>#e0ddd7</BeatColor>
+		        <BeatHighlightColor>#00FF00</BeatHighlightColor>
+		        <MarkerColor>#00FF00</MarkerColor>
+		        <CueColor>#e19820</CueColor>
+		        <Mark>
+					<Control>cue_point</Control>
+					<Pixmap>marker_cue.png</Pixmap>
+					<Text> CUE </Text>
+					<Align>bottom</Align>
+					<Color>#FF001C</Color>
+					<TextColor>#333333</TextColor>
+				</Mark>
+				<MarkRange>
+					<StartControl>loop_start_position</StartControl>
+					<EndControl>loop_end_position</EndControl>
+					<EnabledControl>loop_enabled</EnabledControl>
+					<Color>#00FF00</Color>
+					<DisabledColor>#FFFFFF</DisabledColor>
+				</MarkRange>
+				<Mark>
+					<Control>loop_start_position</Control>
+					<Pixmap>marker_loopin.png</Pixmap>
+					<Text>LOOP IN</Text>
+					<Align>bottom</Align>
+					<Color>#00FF00</Color>
+					<TextColor>#FFFFFF</TextColor>
+				</Mark>
+				<Mark>
+					<Control>loop_end_position</Control>
+					<Pixmap>marker_loopout.png</Pixmap>
+					<Text>LOOP OUT</Text>
+					<Align>bottom</Align>
+					<Color>#00FF00</Color>
+					<TextColor>#FFFFFF</TextColor>
+				</Mark>
+				<!--
+				The hotcues not represented by a button in the current skin show only in the waveform under two circumstances:
+					- if a MIDI device which supports more hotcues than buttons are in the current skin has them activated
+					- if you change from a skin which supports more hotcues than buttons are in the current skin (and has them activated)
+				These "special" hotcues share the color #AE5CFF to make them distinguishable (and maintainable) from the hotcues
+				represented by a button in the current skin. Mixxx 1.8 supports up to 32 hotcue. Current skins uses up to 6 buttons per channel.
+				-->
+				<Mark>
+					<Control>hotcue_1_position</Control>
+					<Pixmap>marker_hotcue_1.png</Pixmap>
+					<Text> HOTCUE 1 </Text>
+					<Align>bottom</Align>
+					<Color>#ffff00</Color>
+					<TextColor>#333333</TextColor>
+				</Mark>
+				<Mark>
+					<Control>hotcue_2_position</Control>
+					<Pixmap>marker_hotcue_2.png</Pixmap>
+					<Text> HOTCUE 2 </Text>
+					<Align>bottom</Align>
+					<Color>#ff00ff</Color>
+					<TextColor>#333333</TextColor>
+				</Mark>
+				<Mark>
+					<Control>hotcue_3_position</Control>
+					<Pixmap>marker_hotcue_3.png</Pixmap>
+					<Text> HOTCUE 3 </Text>
+					<Align>bottom</Align>
+					<Color>#00e1e1</Color>
+					<TextColor>#333333</TextColor>
+				</Mark>
+				<Mark>
+					<Control>hotcue_4_position</Control>
+					<Pixmap>marker_hotcue_4.png</Pixmap>
+					<Text> HOTCUE 4 </Text>
+					<Align>bottom</Align>
+					<Color>#00cc00</Color>
+					<TextColor>#333333</TextColor>
+				</Mark>
+				
+		    </Visual>
+			
+			<!-- Channel 2: Waveform Overview -->
+			<Overview>
+				<TooltipId>waveform_overview</TooltipId>
+				
+				<Channel>2</Channel>
+				<Pos>153,109</Pos>
+				<Size>329,40</Size>
+				<BgColor>#FFFFFF</BgColor>
+				<SignalColor>#CC0000</SignalColor>
+				<Connection>
+					<ConfigKey>[Channel2],playposition</ConfigKey>
+					<EmitOnDownPress>false</EmitOnDownPress>
+				</Connection>
+			</Overview>
+
+			<!-- Channel 2: Button play -->
+			<PushButton>
+				<Tooltip>Play/Pause&#10;Left-click: Toggles playing or pausing the track.&#10;Right-click: Places a Cue-point at the current point in the track.&#10;</Tooltip>
+				<Style></Style>
+				<NumberStates>2</NumberStates>
+				<RightClickIsPushButton>true</RightClickIsPushButton>
+				<State>
+					<Number>0</Number>
+					<Pressed>btn_play.png</Pressed>
+					<Unpressed>btn_play.png</Unpressed>
+				</State>
+				<State>
+					<Number>1</Number>
+					<Pressed>btn_play_over.png</Pressed>
+					<Unpressed>btn_play_over.png</Unpressed>
+				</State>
+				<Pos>0,0</Pos>
+				<Connection>
+					<ConfigKey>[Channel2],play</ConfigKey>
+					<EmitOnDownPress>true</EmitOnDownPress>
+					<ButtonState>LeftButton</ButtonState>
+				</Connection>
+				<Connection>
+					<ConfigKey>[Channel2],cue_set</ConfigKey>
+					<EmitOnDownPress>true</EmitOnDownPress>
+					<ButtonState>RightButton</ButtonState>
+					<ConnectValueToWidget>false</ConnectValueToWidget>
+				</Connection>
+			</PushButton>
+
+			<!-- Channel 2: Button cue -->
+			<PushButton>
+				<Tooltip>Cue&#10;Left-click (while playing): The track will seek to the cue-point and play.&#10;Left-click (while stopped): Places a cue-point at the current position in the track.&#10;Right-click: Will seek to the cue-point and stop.&#10;</Tooltip>
+				<Style></Style>
+				<NumberStates>1</NumberStates>
+				<State>
+					<Number>0</Number>
+					<Pressed>btn_cue_over.png</Pressed>
+					<Unpressed>btn_cue.png</Unpressed>
+				</State>
+				<Pos>0,109</Pos>
+				<Connection>
+					<ConfigKey>[Channel2],cue_default</ConfigKey>
+					<EmitOnDownPress>true</EmitOnDownPress>
+					<ButtonState>LeftButton</ButtonState>
+				</Connection>
+				<Connection>
+					<ConfigKey>[Channel2],cue_default</ConfigKey>
+					<EmitOnDownPress>false</EmitOnDownPress>
+					<ButtonState>LeftButton</ButtonState>
+				</Connection>
+				<Connection>
+					<ConfigKey>[Channel2],cue_gotoandstop</ConfigKey>
+					<EmitOnDownPress>true</EmitOnDownPress>
+					<ButtonState>RightButton</ButtonState>
+				</Connection>
+				<Connection>
+					<ConfigKey>[Channel2],cue_gotoandstop</ConfigKey>
+					<EmitOnDownPress>false</EmitOnDownPress>
+					<ButtonState>RightButton</ButtonState>
+				</Connection>
+			</PushButton>
+
+			<!-- Channel 2: Button ff -->
+		    <PushButton>
+		        <Tooltip>Fast Forward&#10;Left-click: Fast forward through the track.&#10;Right-click: Jumps to the end of the track.&#10;</Tooltip>
+		        <Style></Style>
+		        <NumberStates>1</NumberStates>
+		        <State>
+		            <Number>0</Number>
+		            <Pressed>btn_forward_over.png</Pressed>
+		            <Unpressed>btn_forward.png</Unpressed>
+		        </State>
+		        <Pos>101,109</Pos>
+		        <Connection>
+		            <ConfigKey>[Channel2],fwd</ConfigKey>
+		            <EmitOnDownPress>true</EmitOnDownPress>
+		            <ButtonState>LeftButton</ButtonState>
+		        </Connection>
+		        <Connection>
+		            <ConfigKey>[Channel2],fwd</ConfigKey>
+		            <EmitOnDownPress>false</EmitOnDownPress>
+		            <ButtonState>LeftButton</ButtonState>
+		        </Connection>
+		        <Connection>
+		            <ConfigKey>[Channel2],end</ConfigKey>
+		            <EmitOnDownPress>true</EmitOnDownPress>
+		            <ButtonState>RightButton</ButtonState>
+		        </Connection>
+		        <Connection>
+		            <ConfigKey>[Channel2],end</ConfigKey>
+		            <EmitOnDownPress>false</EmitOnDownPress>
+		            <ButtonState>RightButton</ButtonState>
+		        </Connection>
+		    </PushButton>
+
+		    <!-- Channel 2: Button rr -->
+		    <PushButton>
+		        <Tooltip>Fast Rewind&#10;Left-click: Fast rewind through the track.&#10;Right-click: Jumps to the beginning of the track.&#10;</Tooltip>
+		        <Style></Style>
+		        <NumberStates>1</NumberStates>
+		        <State>
+		            <Number>0</Number>
+		            <Pressed>btn_rewind_over.png</Pressed>
+		            <Unpressed>btn_rewind.png</Unpressed>
+		        </State>
+		        <Pos>51,109</Pos>
+		        <Connection>
+		            <ConfigKey>[Channel2],back</ConfigKey>
+		            <EmitOnDownPress>true</EmitOnDownPress>
+		            <ButtonState>LeftButton</ButtonState>
+		        </Connection>
+		        <Connection>
+		            <ConfigKey>[Channel2],back</ConfigKey>
+		            <EmitOnDownPress>false</EmitOnDownPress>
+		            <ButtonState>LeftButton</ButtonState>
+		        </Connection>
+		        <Connection>
+		            <ConfigKey>[Channel2],start</ConfigKey>
+		            <EmitOnDownPress>true</EmitOnDownPress>
+		            <ButtonState>RightButton</ButtonState>
+		        </Connection>
+		        <Connection>
+		            <ConfigKey>[Channel2],start</ConfigKey>
+		            <EmitOnDownPress>false</EmitOnDownPress>
+		            <ButtonState>RightButton</ButtonState>
+		        </Connection>
+		    </PushButton>
+    </Children>
+    </WidgetGroup>
+
+	<!--
+	**********************************************
+	Visual - Volume level display
+	**********************************************
+	-->
+	<WidgetGroup>
+		<Pos>520,114</Pos>
+		<Style>QGroupBox { border: 0px solid red; }</Style>
+		<Children>
+
+			<!-- CHANNEL 1 -->
+			<VuMeter>
+				<Tooltip>Channel volume meter&#10;Shows the left channel (1) volume&#10;</Tooltip>
+				<Style></Style>
+				<PathVu>btn_volume_display_small_over.png</PathVu>
+				<PathBack>btn_volume_display_small.png</PathBack>
+				<Pos>24,34</Pos>
+				<Horizontal>false</Horizontal>
+				<PeakHoldSize>5</PeakHoldSize>
+				<PeakHoldTime>500</PeakHoldTime>
+				<PeakFallTime>50</PeakFallTime>
+				<PeakFallStep>1</PeakFallStep>
+				<Connection>
+					<ConfigKey>[Channel1],VuMeter</ConfigKey>
+				</Connection>
+			</VuMeter>
+			<StatusLight>
+				<Tooltip>Peak Indicator&#10;Indicates when the signal on the channel is clipping,&#10;(too loud for the hardware and is being distorted).&#10;</Tooltip>
+				<Style></Style>
+				<PathStatusLight>btn_clipping_over.png</PathStatusLight>
+				<PathBack>btn_clipping.png</PathBack>
+				<Pos>24,34</Pos>
+				<Connection>
+					<ConfigKey>[Channel1],PeakIndicator</ConfigKey>
+				</Connection>
+			</StatusLight>
+			
+
+			<!-- MASTER CHANNEL -->
+			<VuMeter>
+				<Tooltip>Master channel volume meter&#10;Shows the current master volume for the left channel.&#10;</Tooltip>
+				<Style></Style>
+				<PathVu>btn_volume_display_over.png</PathVu>
+				<PathBack>btn_volume_display.png</PathBack>
+				<Pos>108,0</Pos>
+				<PeakHoldSize>5</PeakHoldSize>
+				<PeakHoldTime>500</PeakHoldTime>
+				<PeakFallTime>50</PeakFallTime>
+				<PeakFallStep>1</PeakFallStep>
+				<Connection>
+					<ConfigKey>[Master],VuMeterL</ConfigKey>
+				</Connection>
+			</VuMeter>
+			<VuMeter>
+				<Tooltip>Master channel volume meter&#10;Shows the current master volume for the right channel.&#10;</Tooltip>
+				<Style></Style>
+				<PathVu>btn_volume_display_over.png</PathVu>
+				<PathBack>btn_volume_display.png</PathBack>
+				<Pos>122,0</Pos>
+				<PeakHoldSize>5</PeakHoldSize>
+				<PeakHoldTime>500</PeakHoldTime>
+				<PeakFallTime>50</PeakFallTime>
+				<PeakFallStep>1</PeakFallStep>
+				<Connection>
+					<ConfigKey>[Master],VuMeterR</ConfigKey>
+				</Connection>
+			</VuMeter>
+			<StatusLight>
+				<Tooltip>Master Peak Indicator&#10;Indicates when the signal on the Master output is clipping,&#10;(too loud for the hardware and is being distorted).&#10;</Tooltip>
+				<Style></Style>
+				<PathStatusLight>btn_clipping_master_over.png</PathStatusLight>
+				<PathBack>btn_clipping_master.png</PathBack>
+				<Pos>108,0</Pos>
+				<Connection>
+					<ConfigKey>[Master],PeakIndicator</ConfigKey>
+				</Connection>
+			</StatusLight>
+
+			<!-- CHANNEL 2 -->
+			<VuMeter>
+				<Tooltip>Channel volume meter&#10;Shows the right channel (2) volume&#10;</Tooltip>
+				<Style></Style>
+				<PathVu>btn_volume_display_small_over.png</PathVu>
+				<PathBack>btn_volume_display_small.png</PathBack>
+				<Pos>204,34</Pos>
+				<Horizontal>false</Horizontal>
+				<PeakHoldSize>5</PeakHoldSize>
+				<PeakHoldTime>500</PeakHoldTime>
+				<PeakFallTime>50</PeakFallTime>
+				<PeakFallStep>1</PeakFallStep>
+				<Connection>
+					<ConfigKey>[Channel2],VuMeter</ConfigKey>
+				</Connection>
+			</VuMeter>
+
+			<StatusLight>
+				<Tooltip>Peak Indicator&#10;Indicates when the signal on the channel is clipping,&#10;(too loud for the hardware and is being distorted).&#10;</Tooltip>
+				<Style></Style>
+				<PathStatusLight>btn_clipping_over.png</PathStatusLight>
+				<PathBack>btn_clipping.png</PathBack>
+				<Pos>204,34</Pos>
+				<Connection>
+					<ConfigKey>[Channel2],PeakIndicator</ConfigKey>
+				</Connection>
+			</StatusLight>
+
+		</Children>
+	</WidgetGroup>
+
+	<!--
+	**********************************************
+	Visual - Clock
+	**********************************************
+	-->
+	<Time>
+	    <TooltipId>time</TooltipId>
+	    <Style>QLabel { font-size: 15px/17px Arial; color: #acacac; }</Style>
+	    <Pos>606,220</Pos>
+	    <Size>150,50</Size>
+	    <ShowSeconds>true</ShowSeconds>
+	    <ClockFormat>24</ClockFormat>
+	</Time>
+
+</skin>
