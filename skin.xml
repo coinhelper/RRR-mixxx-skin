@@ -21,7 +21,11 @@
 	<!--
 	Currently set at 1280x800.
 
+	Symlink: ln -s ~/Sites/RRR-mixxx-skin/ RRR-symlink
+
 	CHANGELOG
+	v1.11.0.2 (1/02/2014) - ooobo
+	* fix colours of current position indicator from white to green
 	v1.11.0.1 (21/07/2013) - ooobo
 	* Major rewrite
 	* Reconfigured to work with Mixxx 1.11.0
@@ -402,6 +406,7 @@
 				<MarkerColor>#00FF00</MarkerColor>
 				<CueColor>#e19820</CueColor>
 				<EndOfTrackColor>#ff8900</EndOfTrackColor>
+				<PlayPosColor>#00FF00</PlayPosColor>
 				<Mark>
 					<Control>cue_point</Control>
 					<Pixmap>marker_cue.png</Pixmap>
@@ -469,7 +474,7 @@
 					<Pixmap>marker_hotcue_4.png</Pixmap>
 					<Text> HOTCUE 4 </Text>
 					<Align>bottom</Align>
-					<Color>#00cc00</Color>
+					<Color>#00FF00</Color>
 					<TextColor>#333333</TextColor>
 				</Mark>
 				
@@ -483,7 +488,7 @@
 				<BgColor>#061319</BgColor>
 				<BgPixmap></BgPixmap>
 				<SignalColor>#CC0000</SignalColor>
-				
+				<PlayPosColor>#00FF00</PlayPosColor>
 				<EndOfTrackColor>#000000</EndOfTrackColor>
 				<Connection>
 					<ConfigKey>[Channel1],playposition</ConfigKey>
@@ -643,6 +648,7 @@
 		        <BeatHighlightColor>#00FF00</BeatHighlightColor>
 		        <MarkerColor>#00FF00</MarkerColor>
 		        <CueColor>#e19820</CueColor>
+		        <PlayPosColor>#00FF00</PlayPosColor>
 		        <Mark>
 					<Control>cue_point</Control>
 					<Pixmap>marker_cue.png</Pixmap>
@@ -710,7 +716,7 @@
 					<Pixmap>marker_hotcue_4.png</Pixmap>
 					<Text> HOTCUE 4 </Text>
 					<Align>bottom</Align>
-					<Color>#00cc00</Color>
+					<Color>#00FF00</Color>
 					<TextColor>#333333</TextColor>
 				</Mark>
 				
@@ -725,6 +731,7 @@
 				<Size>329,40</Size>
 				<BgColor>#FFFFFF</BgColor>
 				<SignalColor>#CC0000</SignalColor>
+				<PlayPosColor>#00FF00</PlayPosColor>
 				<Connection>
 					<ConfigKey>[Channel2],playposition</ConfigKey>
 					<EmitOnDownPress>false</EmitOnDownPress>
