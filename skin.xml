@@ -1,5 +1,5 @@
 	<!--
-	RRR Radio Skin, for Mixxx 1.11.0
+	RRR Radio Skin, for Mixxx 1.12.0 alpha
 	www.mixxx.org
 	
 	Based upon the "Campcaster" skin for Mixxx, by SourceFabric as licensed under the Creative Commons Attribution-ShareAlike 3.0 Unported license.
@@ -24,6 +24,8 @@
 	Symlink: ln -s ~/Sites/RRR-mixxx-skin/ RRR-symlink
 
 	CHANGELOG
+	v1.12.0.1 (31/03/2015) - ooobo
+	* current alpha in use breaks FF/REW, hide buttons so can't accidentally activate
 	v1.11.0.2 (1/02/2014) - ooobo
 	* fix colours of current position indicator from white to green
 	v1.11.0.1 (21/07/2013) - ooobo
@@ -556,7 +558,7 @@
 					<ButtonState>RightButton</ButtonState>
 				</Connection>
 			</PushButton>
-			<!-- Channel 1: Button ff -->
+			<!-- Channel 1: Button ff 
 		    <PushButton>
 		        <Tooltip>Fast Forward&#10;Left-click: Fast forward through the track.&#10;Right-click: Jumps to the end of the track.&#10;</Tooltip>
 		        <Style></Style>
@@ -587,8 +589,8 @@
 		            <EmitOnDownPress>false</EmitOnDownPress>
 		            <ButtonState>RightButton</ButtonState>
 		        </Connection>
-		    </PushButton>
-		    <!-- Channel 1: Button rr -->
+		    </PushButton> -->
+		    <!-- Channel 1: Button rr 
 		    <PushButton>
 		        <Tooltip>Fast Rewind&#10;Left-click: Fast rewind through the track.&#10;Right-click: Jumps to the beginning of the track.&#10;</Tooltip>
 		        <Style></Style>
@@ -619,7 +621,7 @@
 		            <EmitOnDownPress>false</EmitOnDownPress>
 		            <ButtonState>RightButton</ButtonState>
 		        </Connection>
-		    </PushButton>
+		    </PushButton> -->
 	    </Children>
     </WidgetGroup>
 
@@ -801,7 +803,7 @@
 				</Connection>
 			</PushButton>
 
-			<!-- Channel 2: Button ff -->
+			<!-- Channel 2: Button ff 
 		    <PushButton>
 		        <Tooltip>Fast Forward&#10;Left-click: Fast forward through the track.&#10;Right-click: Jumps to the end of the track.&#10;</Tooltip>
 		        <Style></Style>
@@ -832,9 +834,9 @@
 		            <EmitOnDownPress>false</EmitOnDownPress>
 		            <ButtonState>RightButton</ButtonState>
 		        </Connection>
-		    </PushButton>
+		    </PushButton> -->
 
-		    <!-- Channel 2: Button rr -->
+		    <!-- Channel 2: Button rr 
 		    <PushButton>
 		        <Tooltip>Fast Rewind&#10;Left-click: Fast rewind through the track.&#10;Right-click: Jumps to the beginning of the track.&#10;</Tooltip>
 		        <Style></Style>
@@ -865,7 +867,7 @@
 		            <EmitOnDownPress>false</EmitOnDownPress>
 		            <ButtonState>RightButton</ButtonState>
 		        </Connection>
-		    </PushButton>
+		    </PushButton> -->
     </Children>
     </WidgetGroup>
 
