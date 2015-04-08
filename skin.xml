@@ -117,138 +117,7 @@
 
 		</Children>
 	</WidgetGroup>
-	<!-- Preview Deck-->
-	<WidgetGroup>
-		<Style>
-			QGroupBox { background:#000000;}
-		</Style>
-		<Pos>20,718</Pos>
-		<Size>400,70</Size>
-		<Layout>horizontal</Layout>
-		<Children>
-			<!-- Preview Deck Column 1 Row 1-->
-			<WidgetGroup>
-			<Layout>vertical</Layout>
-			<Children>
-			<WidgetGroup>
-				<Style>
-					QGroupBox
-					{
-					padding: 2px 0px 2px 2px;
-					border-left: 1px solid #656565;
-					border-right: 1px solid #656565;
-					border-top: 1px solid #656565;
-					border-bottom: 1px solid #2B2B2B;
-					background: transparent;
-					}
-				</Style>
-				<Layout>horizontal</Layout>
-				<Children>
-					<!--
-					**********************************************
-					Text- Track Title
-					**********************************************
-					-->
-					<Text>
-						<TooltipId>text</TooltipId>
-						<Style>QLabel { 
-						font: 11px/13px Lucida Grande, Lucida Sans Unicode, Arial, Verdana, sans-serif;
-						background-color: transparent;
-						color: #ACACAC;
-						text-align: left;
-						}
-						</Style>
-						<Group>[PreviewDeck1]</Group>
-						<Pos></Pos>
-						<Size>50me,15f</Size>
-					</Text>
-					
-				</Children>
-			</WidgetGroup>
-			<!-- Preview Deck Column 1 Row 2-->
-			<WidgetGroup>
-				<Style>
-				QGroupBox {
-				margin-bottom: 0px;
-				padding: 3px;
-				border-left: 1px solid #656565;
-				border-right: 1px solid #656565;
-				border-top: 0px solid #2B2B2B;
-				border-bottom: 1px solid #656565;
-				background: transparent;
-				}
-				</Style>
-				<Layout>horizontal</Layout>
-				<Children>
-					<PushButton>
-						<TooltipId>play_start</TooltipId>
-						<Style></Style>
-						<NumberStates>2</NumberStates>
-						<RightClickIsPushButton>true</RightClickIsPushButton>
-						<State>
-							<Number>0</Number>
-							<Pressed>btn_play_sampler_down.png</Pressed>
-							<Unpressed>btn_play_sampler.png</Unpressed>
-						</State>
-						<State>
-							<Number>1</Number>
-							<Pressed>btn_play_sampler_overdown.png</Pressed>
-							<Unpressed>btn_play_sampler_over.png</Unpressed>
-						</State>
-						<Pos>2,2</Pos>
-						<Connection>
-							<ConfigKey>[PreviewDeck1],play</ConfigKey>
-							<EmitOnDownPress>true</EmitOnDownPress>
-							<ButtonState>LeftButton</ButtonState>
-						</Connection>
-						<Connection>
-							<ConfigKey>[PreviewDeck1],start</ConfigKey>
-							<EmitOnDownPress>true</EmitOnDownPress>
-							<ButtonState>RightButton</ButtonState>
-							<ConnectValueToWidget>false</ConnectValueToWidget>
-						</Connection>
-					</PushButton>
-					<Overview>
-						<TooltipId>waveform_overview</TooltipId>
-						<Style></Style>
-						<Group>[PreviewDeck1]</Group>
-						<Size>me,30f</Size>
-						<BgColor></BgColor>
-						<BgColor>#FFFFFF</BgColor>
-						<SignalHighColor>#FFE300</SignalHighColor>
-						<SignalMidColor>#0099FF</SignalMidColor>
-						<SignalLowColor>#FF0035</SignalLowColor>
-						<SignalColor>#FF8000</SignalColor>
-						<PlayPosColor>#00FF00</PlayPosColor>
-						<DefaultMark>
-							<Align>bottom</Align>
-							<Color>#FFFFFF</Color>
-							<TextColor>#00FF00</TextColor>
-							<Text> %1 </Text>
-						</DefaultMark>
-						<Mark>
-							<Control>cue_point</Control>
-							<Text> C </Text>
-							<Align>top</Align>
-							<Color>#FF001C</Color>
-							<TextColor>#00FF00</TextColor>
-						</Mark>
-						<Connection>
-							<ConfigKey>[PreviewDeck1],playposition</ConfigKey>
-							<EmitOnDownPress>false</EmitOnDownPress>
-						</Connection>
-					</Overview>
-				</Children>
-			</WidgetGroup>
-			</Children>
-			</WidgetGroup>
-
-		</Children>
-		<Connection>
-			<ConfigKey>[PreviewDeck],show_previewdeck</ConfigKey>
-			<BindProperty>visible</BindProperty>
-		</Connection>
-	</WidgetGroup>
+	
 
 
 	<!--
@@ -991,7 +860,6 @@
 	    <Pos>606,220</Pos>
 	    <Size>150,50</Size>
 	    <ShowSeconds>true</ShowSeconds>
-	    <ClockFormat>24</ClockFormat>
 	</Time>
 
 </skin>
